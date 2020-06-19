@@ -2,6 +2,7 @@ provider "aws" {
   region = "${var.region}"
 }
 
+#adding record set for the root domain
 resource "aws_route53_record" "Root-A-Record" {
   zone_id = "${var.HostedZoneID}"
   name = "${var.rootDomain}"
@@ -13,6 +14,7 @@ resource "aws_route53_record" "Root-A-Record" {
   }
 }
 
+#adding a record set for the subdomain with www
 resource "aws_route53_record" "SubDomain-A-Record" {
   zone_id = "${var.HostedZoneID}"
   name = "${var.subDomain}"

@@ -1,5 +1,3 @@
-
-
 #module for hosting static website on s3
 module "s3BucketStaticWebsite" {
   source = "./s3"
@@ -8,7 +6,7 @@ module "s3BucketStaticWebsite" {
 }
 
 
-#configure route53 to point to the endpoint of S3 bucket
+#configure route53 to point to the endpoints of your S3 buckets
 module "route53DnsSetup" {
   source = "./route53"
   rootDomain = "${var.rootDomain}"
