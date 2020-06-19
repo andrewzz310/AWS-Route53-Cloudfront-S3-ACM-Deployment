@@ -13,17 +13,20 @@ resource "aws_s3_bucket" "MyWebsiteRootDomain" {
   }
     policy = <<EOF
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetBucketObject",
-      "Effect": "Allow",
-      "Principal": "*" ,
-
-      "Action": ["s3:GetObject"],
-      "Resource": ["arn:aws:s3:::${var.rootDomain}/*" ]
-    }
-  ]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${var.rootDomain}/*"
+            ]
+        }
+    ]
 }
 EOF
 
@@ -53,5 +56,18 @@ resource "aws_s3_bucket_object" "object" {
   source = "index.html"
   content_type = "text/html"
 
+}
+
+
+output "S3BucketRootWebsiteDomain" {
+  value = "${aws_s3_bucket.MyWebsiteRootDomain.website_domain}"
+}
+
+output "S3RootWebsiteHostedZoneID" {
+  value = "${aws_s3_bucket.MyWebsiteRootDomain.hosted_zone_id}"
+}
+
+output "S3WebsiteSubDomain" {
+  value = "${aws_s3_bucket.MyWebsiteSubDomain.website_domain}"
 }
 
