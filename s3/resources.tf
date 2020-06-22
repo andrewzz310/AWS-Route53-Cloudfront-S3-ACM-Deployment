@@ -70,3 +70,6 @@ output "S3WebsiteSubDomain" {
   value = "${aws_s3_bucket.MyWebsiteSubDomain.website_domain}"
 }
 
+output "S3WebsiteEndpoint" {
+  value = "${aws_s3_bucket.MyWebsiteRootDomain.website_endpoint}"
+}

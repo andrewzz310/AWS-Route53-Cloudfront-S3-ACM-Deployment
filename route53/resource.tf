@@ -2,6 +2,8 @@ provider "aws" {
   region = "${var.region}"
 }
 
+
+/*
 #adding record set for the root domain
 resource "aws_route53_record" "Root-A-Record" {
   zone_id = "${var.HostedZoneID}"
@@ -24,4 +26,18 @@ resource "aws_route53_record" "SubDomain-A-Record" {
     zone_id = "${var.s3RootWebsiteHostedZoneID}"
     evaluate_target_health = false
   }
+}*/
+
+
+#Point A record at Cloudfront Distribution
+resource "aws_route53_record" "www" {
+  zone_id = "${var.HostedZoneID}"
+  name = "${var.subDomain}"
+  type = "A"
+  alias {
+    name = "${var.CloudfrontDistributionName}"
+    zone_id = "${var.CloudfrontZoneID}"
+    evaluate_target_health = false
+  }
+
 }

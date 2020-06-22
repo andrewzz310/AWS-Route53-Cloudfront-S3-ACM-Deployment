@@ -27,11 +27,14 @@ resource "aws_route53_record" "WildCardCertValidation" {
 
 
 
-
-
 resource "aws_acm_certificate_validation" "ValidateCert" {
   certificate_arn = "${aws_acm_certificate.WildCardRootDomainCert.arn}"
   validation_record_fqdns = ["${aws_route53_record.WildCardCertValidation.fqdn}"]
   depends_on = [aws_route53_record.WildCardCertValidation]
+}
+
+
+output "RootCertificateARN" {
+  value = "${aws_acm_certificate.WildCardRootDomainCert.arn}"
 }
 

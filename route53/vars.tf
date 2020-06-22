@@ -28,3 +28,13 @@ variable "S3WebsiteSubDomain" {
   description = "S3 website SubDomain output created in S3 module"
   default = ""
 }
+
+
+variable "CloudfrontDistributionName" {
+  description = "the distribution name from cloudfront module"
+  default = ""
+}
+
+variable "CloudfrontZoneID" {
+  default = ""
+}
