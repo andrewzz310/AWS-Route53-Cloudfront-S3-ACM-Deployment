@@ -30,7 +30,7 @@ resource "aws_s3_bucket" "MyWebsiteRootDomain" {
 }
 EOF
 
-  tags {
+  tags = {
     Name = "RootDomainWebsite"
   }
 }
@@ -43,20 +43,19 @@ resource "aws_s3_bucket" "MyWebsiteSubDomain" {
   website {
     redirect_all_requests_to = "${var.rootDomain}"
   }
-  tags {
+  tags = {
     Name = "SubDomainWebsite"
   }
 
 }
 
-
-resource "aws_s3_bucket_object" "object" {
-  bucket = "${aws_s3_bucket.MyWebsiteRootDomain.id}"
-  key    = "index.html"
-  source = "index.html"
-  content_type = "text/html"
-
+# this allows us to upload the site contents all at once based on running a local bash aws-cli command
+resource "null_resource" "UploadSiteToS3" {
+  provisioner "local-exec" {
+    command = "aws s3 sync _site/ s3://${aws_s3_bucket.MyWebsiteRootDomain.id}"
+  }
 }
+
 
 
 output "S3BucketRootWebsiteDomain" {

@@ -6,6 +6,16 @@ module "s3BucketStaticWebsite" {
 }
 
 
+
+#module for generating a certificate
+module "CertificateForDomain" {
+  source = "./certificateManager"
+  rootDomain = "${var.rootDomain}"
+  HostedZoneID = "${var.HostedZoneID}"
+  subDomain = "${var.subDomain}"
+
+}
+
 #configure route53 to point to the endpoints of your S3 buckets
 module "route53DnsSetup" {
   source = "./route53"
@@ -16,3 +26,4 @@ module "route53DnsSetup" {
   s3RootWebsiteHostedZoneID = "${module.s3BucketStaticWebsite.S3RootWebsiteHostedZoneID}"
   S3WebsiteSubDomain = "${module.s3BucketStaticWebsite.S3WebsiteSubDomain}"
 }
+
