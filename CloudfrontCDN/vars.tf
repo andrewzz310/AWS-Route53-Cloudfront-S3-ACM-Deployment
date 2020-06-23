@@ -19,3 +19,7 @@ variable "RootCertificateARN" {
 }
 
 
+variable "rootDomain" {
+  description = "your root domain"
+  default = ""
+}

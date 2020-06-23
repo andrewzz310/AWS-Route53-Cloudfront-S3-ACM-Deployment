@@ -57,3 +57,4 @@ output "CloudfrontZoneID" {
   value = "${aws_cloudfront_distribution.MySiteS3.hosted_zone_id}"
 }
 
+

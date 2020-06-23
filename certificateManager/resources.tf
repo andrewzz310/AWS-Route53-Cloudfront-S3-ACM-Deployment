@@ -2,6 +2,7 @@ provider "aws" {
   region = "${var.region}"
 }
 
+
 # creates certificate for root domain and additional sub-domains
 resource "aws_acm_certificate" "WildCardRootDomainCert" {
   domain_name = "*.${var.rootDomain}"
@@ -31,10 +32,15 @@ resource "aws_acm_certificate_validation" "ValidateCert" {
   certificate_arn = "${aws_acm_certificate.WildCardRootDomainCert.arn}"
   validation_record_fqdns = ["${aws_route53_record.WildCardCertValidation.fqdn}"]
   depends_on = [aws_route53_record.WildCardCertValidation]
+    provisioner "local-exec" {
+    command = "sleep 55"
+  }
 }
 
 
 output "RootCertificateARN" {
   value = "${aws_acm_certificate.WildCardRootDomainCert.arn}"
 }
+
+
 

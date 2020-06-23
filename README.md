@@ -36,7 +36,7 @@ $ cd personalPortfolio
 $ touch terraform.tfvars
 ```
 
-###Modifications
+### Modifications
 > You will need to modify your S3 module "null_resource" to sync your own site to S3 (replace the command)
 
 ```hcl
@@ -57,8 +57,7 @@ $ terraform apply # This will create your entire stack of resources
 ```
 
 ### Notes
-> Given the dependencies between the modules, cloudfront may not beable to verify your validated certificate instantaneously. If this occurs to you, simply run terraform apply again and it will proceed with the cloudfront module.
-
+> Given the dependencies between cert validation and cloudfront, cloudfront may not beable to verify your validated certificate instantaneously. If this occurs to you, simply run terraform apply again and it will proceed with the cloudfront module. Future releases will include restructuring of this dependency through depends on and null resources in order to accomodate.
 
 ## Contributing
 

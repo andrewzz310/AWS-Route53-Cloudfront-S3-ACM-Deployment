@@ -14,7 +14,6 @@ module "CertificateForDomain" {
   HostedZoneID = "${var.HostedZoneID}"
   subDomain = "${var.subDomain}"
 
-
 }
 
 #module for configuring cloudfront CDN for our content in S3 and using Certificate generated
@@ -23,6 +22,7 @@ module "CloudfrontCDN" {
   S3WebsiteEndpoint = "${module.s3BucketStaticWebsite.S3WebsiteEndpoint}"
   subDomain = "${var.subDomain}"
   RootCertificateARN = "${module.CertificateForDomain.RootCertificateARN}"
+  rootDomain = "${var.rootDomain}"
 }
 
 
