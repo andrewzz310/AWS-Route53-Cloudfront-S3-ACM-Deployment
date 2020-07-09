@@ -2,7 +2,7 @@ provider "aws" {
   region = "${var.region}"
 }
 
-
+//cloudfront resource
 resource "aws_cloudfront_distribution" "MySiteS3" {
   origin {
     custom_origin_config {

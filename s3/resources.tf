@@ -57,7 +57,7 @@ resource "null_resource" "UploadSiteToS3" {
 }
 
 
-
+# outputs in order to reference them in other modules
 output "S3BucketRootWebsiteDomain" {
   value = "${aws_s3_bucket.MyWebsiteRootDomain.website_domain}"
 }
