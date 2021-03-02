@@ -1,6 +1,6 @@
 # S3  Website with Route 53 DNS
 > Deploy a website on AWS hosted on S3 with route 53 (DNS), Cloudfront (CDN), ACM Certificates, (AWS Certificate Manager for SSL/TLS) deployed using Terraform for Infrastructure-As-Code(IAC).
-> The following below will allow you to  one push deployment for your website similar to what was done for [andrewzhu.me](https://www.andrewzhu.me)
+> The following below will allow you to a single push deployment for your website similar to what was done for [andrewzhu.me](https://www.andrewzhu.me)
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 ### Overview of Resources to be Created
